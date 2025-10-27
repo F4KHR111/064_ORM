@@ -20,3 +20,14 @@ db.sequelize.sync()
     .catch((err) => {
         console.error('Failed to sync database:', err);
     });
+
+app.post('/komik', async (req, res) => {
+    const data = req.body;
+    try {
+        const komik = await db.Komik.create(data);
+        res.send(komik);
+    } catch (err) {
+        res.send(err);
+    }
+});
+
